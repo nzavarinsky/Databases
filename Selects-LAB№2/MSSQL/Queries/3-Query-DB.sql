@@ -1,4 +1,4 @@
-select distinct product.maker 
-from product 
-where type='PC'
-and maker = some(select product.maker from Product where type='Laptop');
+SELECT DISTINCT product.maker
+FROM pc
+INNER JOIN product ON pc.model = product.model
+WHERE pc.speed <=500
