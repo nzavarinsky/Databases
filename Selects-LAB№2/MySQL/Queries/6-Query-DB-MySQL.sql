@@ -1,0 +1,1 @@
+select date(date) from income
