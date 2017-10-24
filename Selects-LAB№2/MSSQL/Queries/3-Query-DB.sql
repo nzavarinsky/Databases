@@ -1,4 +1,4 @@
 SELECT DISTINCT product.maker
-FROM pc
-INNER JOIN product ON pc.model = product.model
-WHERE pc.speed <=500
+FROM Laptop
+INNER JOIN product ON Laptop.model = product.model
+WHERE  Laptop.speed <=500
