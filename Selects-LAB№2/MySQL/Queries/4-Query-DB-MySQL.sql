@@ -1,2 +1,8 @@
-select distinct maker,type from product
-where type = all(select type from product where type = 'PC')
+SELECT DISTINCT maker 
+FROM product 
+WHERE type = 'PC'
+and maker NOT IN(
+	SELECT maker
+	FROM product
+	WHERE type='Laptop'
+)

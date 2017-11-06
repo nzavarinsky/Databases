@@ -1,8 +1,2 @@
-SELECT DISTINCT maker FROM Product
-WHERE type='Laptop' OR
-type = SOME(SELECT maker FROM Product
-WHERE type = 'PC')
-SELECT DISTINCT maker FROM Product
-WHERE type='PC' OR
-type = SOME(SELECT maker FROM Product
-WHERE type = 'Laptop')
+SELECT distinct maker FROM Product
+ where type = 'PC' and maker = some(select distinct maker from Product where type ='Laptop')

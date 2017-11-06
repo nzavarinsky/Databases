@@ -1,3 +1,4 @@
-select distinct maker,type,hd,speed from product,laptop
-where type = 'Laptop'
-and hd > 10
+SELECT DISTINCT p.maker,p.type, l.speed, l.hd
+FROM laptop l 
+JOIN product p ON p.model = l.model 
+WHERE  l.hd >= 10
