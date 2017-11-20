@@ -1,6 +1,5 @@
-SELECT sum(s.price)/sum(s.kil) as seredn FROM
-(SELECT price,1 as kil FROM pc,product
- WHERE pc.model=product.model AND product.maker='A'
-UNION all
- SELECT price,1 as kil FROM laptop,product
- WHERE laptop.model=product.model AND product.maker='A') as s
+SELECT t1.point, t1.date, inc, `out`
+FROM income_o t1 LEFT JOIN outcome_o t2 USING(point,date)
+UNION
+SELECT t2.point, t2.date, inc, `out`
+FROM income_o t1 RIGHT JOIN outcome_o t2 USING(point,date);
