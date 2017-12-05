@@ -29,17 +29,13 @@ private static final String url ="jdbc:mysql://localhost:3306/db_jbdc";
             statement=connection.createStatement();
             //endregion
 
-            //readData();
 
-            //updateDataUniversity();
-            //readData();
 
             insertDataUniversity();
             readData();
-
-            //DeleteDataCity();
-
-            //CallProcedureForInsertToPersonBook();
+            DeleteDataUniversity();
+            updateDataUniversity();
+            //CallProcedureForInsertToVykladach();
 
 
         } catch (ClassNotFoundException e) {
@@ -147,6 +143,7 @@ private static final String url ="jdbc:mysql://localhost:3306/db_jbdc";
     }
 
     private static void updateDataUniversity() throws SQLException {
+        rs =  statement.executeQuery("SET foreign_key_checks = 0; ");
         Scanner input = new Scanner(System.in);
         System.out.println("Input name university what you want to update: ");
         String university = input.next();
@@ -156,7 +153,7 @@ private static final String url ="jdbc:mysql://localhost:3306/db_jbdc";
         // 3. executing SELECT query
 // 1
         statement.execute("UPDATE University SET NameOfUniver='"+universitynew+"' WHERE NameOfUniver='"+university+"';");
-
+        rs =  statement.executeQuery("SET foreign_key_checks = 1; ");
 // 2  Returns count of updated rows
 //        int n=statement.executeUpdate("UPDATE city SET City='"+citynew+"' WHERE City='"+city+"';");
 //        System.out.println("Count rows that updated: "+n);
@@ -194,7 +191,7 @@ private static final String url ="jdbc:mysql://localhost:3306/db_jbdc";
         // 3. executing SELECT query
         //   PreparedStatements can use variables and are more efficient
         PreparedStatement preparedStatement;
-        preparedStatement=connection.prepareStatement("DELETE FROM University WHERE University=?");
+        preparedStatement=connection.prepareStatement("DELETE FROM University WHERE NameOfUniver=?");
         preparedStatement.setString(1, university);
         int n=preparedStatement.executeUpdate();
         System.out.println("Count rows that deleted: "+n);

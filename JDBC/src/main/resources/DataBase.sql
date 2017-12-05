@@ -63,7 +63,7 @@ BEGIN
 	DECLARE msg varchar(40);
 
   -- checks for present Surname
-  IF NOT EXISTS( SELECT * FROM University WHERE Surname=SurmanePersonIn)
+  IF NOT EXISTS( SELECT * FROM Studik WHERE Surname=SurmanePersonIn)
   THEN SET msg = 'This Surname is absent';
 
   -- checks for present Book
@@ -72,8 +72,8 @@ BEGIN
 
   -- checks if there are this combination already
 	ELSEIF EXISTS( SELECT * FROM Vykladach
-		WHERE IDStudika = (SELECT IDStudika FROM Studik WHERE Surname=SurmanePersonIn)
-        AND IDKomisiyi = (SELECT IDKomisiyi FROM Komisiya WHERE Name=BookNameIN)
+		WHERE IDStudika = (SELECT IDStudika FROM Studik WHERE Studik.IDStudika=SurmanePersonIn)
+        AND IDKomisiyi = (SELECT IDKomisiyi FROM Komisiya WHERE IDKomisiyi=BookNameIN)
         )
         THEN SET msg = 'This university already has this komisiya';
 
@@ -85,8 +85,8 @@ BEGIN
     -- makes insert
     ELSE
 		INSERT Vykladach (IDStudika, IDKomisiyi1)
-        Value ( (SELECT IDStudika FROM Studik WHERE Surname=SurmanePersonIn),
-			     (SELECT IDKomisiyi FROM Komisiya WHERE Name=BookNameIN) );
+        Value ( (SELECT IDStudika FROM Studik WHERE Studik.IDStudika=SurmanePersonIn),
+			     (SELECT IDKomisiyi FROM Komisiya WHERE IDKomisiyi=BookNameIN) );
 		SET msg = 'OK';
 
 	END IF;
