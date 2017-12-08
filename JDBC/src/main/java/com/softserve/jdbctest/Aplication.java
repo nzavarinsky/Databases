@@ -164,8 +164,7 @@ private static final String url ="jdbc:mysql://localhost:3306/db_jbdc";
 //        preparedStatement.setString(1, citynew);
 //        preparedStatement.setString(2, city);
 //        int n=preparedStatement.executeUpdate();
-//        System.out.println("Count rows that updated: "+n);
-
+//        System.out.println("Count rows that updated: "+n)
     }
 
     private static void insertDataUniversity() throws SQLException {
@@ -184,6 +183,7 @@ private static final String url ="jdbc:mysql://localhost:3306/db_jbdc";
     }
 
     private static void DeleteDataUniversity() throws SQLException {
+        rs =  statement.executeQuery("SET foreign_key_checks = 0; ");
         Scanner input = new Scanner(System.in);
         System.out.println("Input a name university for delete: ");
         String university = input.next();
@@ -194,6 +194,7 @@ private static final String url ="jdbc:mysql://localhost:3306/db_jbdc";
         preparedStatement=connection.prepareStatement("DELETE FROM University WHERE NameOfUniver=?");
         preparedStatement.setString(1, university);
         int n=preparedStatement.executeUpdate();
+        rs =  statement.executeQuery("SET foreign_key_checks = 1; ");
         System.out.println("Count rows that deleted: "+n);
     }
 
