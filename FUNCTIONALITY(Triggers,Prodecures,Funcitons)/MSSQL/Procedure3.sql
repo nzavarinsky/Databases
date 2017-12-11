@@ -1,5 +1,5 @@
 
-CREATE PROCEDURE create_2tables_v4
+CREATE PROCEDURE create_2tables_v5
 AS
 BEGIN
 
@@ -46,5 +46,5 @@ BEGIN
 	
 END
 
-execute create_2tables_v4
+execute create_2tables_v5
 

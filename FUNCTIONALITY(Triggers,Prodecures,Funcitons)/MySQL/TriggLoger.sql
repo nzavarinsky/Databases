@@ -1,0 +1,6 @@
+DELIMITER ;;
+CREATE TRIGGER `my_table_bi` BEFORE INSERT ON співробітники FOR EACH ROW
+BEGIN
+    SET NEW.currdate = NOW();
+END;;
+DELIMITER ;
